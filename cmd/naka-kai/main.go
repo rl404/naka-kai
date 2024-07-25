@@ -7,8 +7,8 @@ import (
 
 func main() {
 	cmd := cobra.Command{
-		Use:   "naka",
-		Short: "Naka Discord Bot",
+		Use:   "naka-kai",
+		Short: "Naka-kai Discord Bot",
 	}
 
 	cmd.AddCommand(&cobra.Command{
