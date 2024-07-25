@@ -1,0 +1,21 @@
+name: build
+
+on: pull_request
+
+jobs:
+  push:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.21"
+      - name: Build
+        run: |
+          cd cmd/naka-kai
+          CGO_ENABLED=0 go build -a -installsuffix cgo -o naka-kai

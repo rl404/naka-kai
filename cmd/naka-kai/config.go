@@ -21,7 +21,6 @@ import (
 type config struct {
 	Discord  discordConfig  `envconfig:"DISCORD"`
 	DB       dbConfig       `envconfig:"DB"`
-	Cache    cacheConfig    `envconfig:"CACHE"`
 	Youtube  youtubeConfig  `envconfig:"YOUTUBE"`
 	Log      logConfig      `envconfig:"LOG"`
 	Newrelic newrelicConfig `envconfig:"NEWRELIC"`
@@ -42,13 +41,6 @@ type dbConfig struct {
 	MaxConnOpen     int           `envconfig:"MAX_CONN_OPEN" validate:"required,gt=0" mod:"default=10"`
 	MaxConnIdle     int           `envconfig:"MAX_CONN_IDLE" validate:"required,gt=0" mod:"default=10"`
 	MaxConnLifetime time.Duration `envconfig:"MAX_CONN_LIFETIME" validate:"required,gt=0" mod:"default=1m"`
-}
-
-type cacheConfig struct {
-	Dialect  string        `envconfig:"DIALECT" validate:"required,oneof=nocache redis inmemory" mod:"default=inmemory,no_space,lcase"`
-	Address  string        `envconfig:"ADDRESS"`
-	Password string        `envconfig:"PASSWORD"`
-	Time     time.Duration `envconfig:"TIME" validate:"required,gt=0" mod:"default=24h"`
 }
 
 type youtubeConfig struct {

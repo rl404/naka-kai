@@ -8,7 +8,6 @@ import (
 
 	"github.com/newrelic/go-agent/v3/newrelic"
 	_nr "github.com/rl404/fairy/log/newrelic"
-	nrCache "github.com/rl404/fairy/monitoring/newrelic/cache"
 	_bot "github.com/rl404/naka-kai/internal/delivery/bot"
 	discordRepository "github.com/rl404/naka-kai/internal/domain/discord/repository"
 	discordClient "github.com/rl404/naka-kai/internal/domain/discord/repository/client"
@@ -20,7 +19,6 @@ import (
 	youtubeClient "github.com/rl404/naka-kai/internal/domain/youtube/repository/client"
 	"github.com/rl404/naka-kai/internal/service"
 	"github.com/rl404/naka-kai/internal/utils"
-	"github.com/rl404/naka-kai/pkg/cache"
 )
 
 func bot() error {
@@ -53,15 +51,6 @@ func bot() error {
 	utils.Info("database initialized")
 	tmp, _ := db.DB()
 	defer tmp.Close()
-
-	// Init cache.
-	c, err := cache.New(cacheType[cfg.Cache.Dialect], cfg.Cache.Address, cfg.Cache.Password, cfg.Cache.Time)
-	if err != nil {
-		return err
-	}
-	c = nrCache.New(cfg.Cache.Dialect, cfg.Cache.Address, c)
-	utils.Info("cache initialized")
-	defer c.Close()
 
 	// Init discord.
 	var discord discordRepository.Repository

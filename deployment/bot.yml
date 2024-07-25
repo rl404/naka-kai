@@ -1,0 +1,10 @@
+version: '2.4'
+
+services:
+  naka-kai-bot:
+    container_name: naka-kai-bot
+    image: naka-kai:latest
+    command: ./naka-kai bot
+    network_mode: host
+    restart: always
+    env_file: ./../.env
