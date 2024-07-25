@@ -2,6 +2,7 @@ package client
 
 import (
 	"sync"
+	"time"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -9,19 +10,21 @@ import (
 type client struct {
 	sync.Mutex
 
-	session *discordgo.Session
-	players map[string]*player
+	deleteTime time.Duration
+	session    *discordgo.Session
+	players    map[string]*player
 }
 
 // New to create new discord client.
-func New(token string) (*client, error) {
+func New(token string, deleteTime int) (*client, error) {
 	session, err := discordgo.New("Bot " + token)
 	if err != nil {
 		return nil, err
 	}
 	return &client{
-		session: session,
-		players: make(map[string]*player),
+		deleteTime: time.Duration(deleteTime) * time.Second,
+		session:    session,
+		players:    make(map[string]*player),
 	}, nil
 }
 
@@ -32,6 +35,12 @@ func (c *client) Run() error {
 
 // Close to stop discord bot.
 func (c *client) Close() error {
+	for _, player := range c.players {
+		if player.messageID == "" {
+			continue
+		}
+		c.session.ChannelMessageDelete(player.channelID, player.messageID)
+	}
 	return c.session.Close()
 }
 

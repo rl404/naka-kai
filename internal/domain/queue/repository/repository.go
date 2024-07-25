@@ -8,9 +8,9 @@ import (
 
 // Repository contains functions for queue domain.
 type Repository interface {
-	Add(ctx context.Context, data entity.Queue) error
+	GetQueueSize() int
 	GetByGuildID(ctx context.Context, guildID string) ([]entity.Queue, error)
-	CountByGuildID(ctx context.Context, guildID string) (int, error)
+	Add(ctx context.Context, data entity.Queue) error
 	DeleteByGuildID(ctx context.Context, guildID string) error
-	DeleteByID(ctx context.Context, id int64) error
+	DeleteByGuildIDAndOrders(ctx context.Context, guildID string, orders []int) error
 }

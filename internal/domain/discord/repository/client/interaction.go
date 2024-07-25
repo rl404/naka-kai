@@ -2,47 +2,39 @@ package client
 
 import (
 	"context"
+	"time"
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/rl404/fairy/errors/stack"
-	"github.com/rl404/naka-kai/internal/domain/template/entity"
+	"github.com/rl404/naka-kai/internal/domain/discord/entity"
 )
 
-// SendInteractionErrorMessage to send interaction error message.
-func (c *client) SendInteractionErrorMessage(ctx context.Context, i *discordgo.Interaction, msg string, isEdit ...bool) error {
+// SendInteractionMessage to send interaction message.
+func (c *client) SendInteractionMessage(ctx context.Context, i *discordgo.Interaction, data entity.Message) error {
+	defer c.deleteInteraction(i)
+
 	_type := discordgo.InteractionResponseChannelMessageWithSource
-	if len(isEdit) > 0 && isEdit[0] {
+	if data.IsEdit {
 		_type = discordgo.InteractionResponseUpdateMessage
 	}
 
 	return stack.Wrap(ctx, c.session.InteractionRespond(i, &discordgo.InteractionResponse{
 		Type: _type,
 		Data: &discordgo.InteractionResponseData{
-			Embeds: []*discordgo.MessageEmbed{
-				{
-					Title:       "Error",
-					Description: msg,
-					Color:       entity.ColorRed,
-				},
-			},
-			Flags: discordgo.MessageFlagsEphemeral,
+			Embeds:     data.Messages,
+			Components: data.Components,
+			Flags:      discordgo.MessageFlagsSuppressNotifications,
 		},
 	}))
 }
 
-// SendInteractionEmbedMessage to send interaction embed message.
-func (c *client) SendInteractionEmbedMessage(ctx context.Context, i *discordgo.Interaction, msgs []*discordgo.MessageEmbed, components []discordgo.MessageComponent, isEdit ...bool) error {
-	_type := discordgo.InteractionResponseChannelMessageWithSource
-	if len(isEdit) > 0 && isEdit[0] {
-		_type = discordgo.InteractionResponseUpdateMessage
+func (c *client) deleteInteraction(i *discordgo.Interaction) {
+	if c.deleteTime == 0 {
+		return
 	}
 
-	return stack.Wrap(ctx, c.session.InteractionRespond(i, &discordgo.InteractionResponse{
-		Type: _type,
-		Data: &discordgo.InteractionResponseData{
-			Embeds:     msgs,
-			Components: components,
-			Flags:      discordgo.MessageFlagsEphemeral,
-		},
-	}))
+	go func() {
+		time.Sleep(c.deleteTime)
+		c.session.InteractionResponseDelete(i)
+	}()
 }

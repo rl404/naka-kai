@@ -1,26 +1,28 @@
 package repository
 
 import (
-	"github.com/bwmarrin/discordgo"
+	discordEntity "github.com/rl404/naka-kai/internal/domain/discord/entity"
 	"github.com/rl404/naka-kai/internal/domain/template/entity"
 )
 
 // Repository contains functions for template.
 type Repository interface {
-	GetSong(data entity.Video, play ...bool) *discordgo.MessageEmbed
-	GetSearch(data []entity.Video, play bool) (*discordgo.MessageEmbed, discordgo.MessageComponent)
-	GetQueue(data []entity.Video) (*discordgo.MessageEmbed, discordgo.MessageComponent)
-	GetPurged() *discordgo.MessageEmbed
-	GetJoined() *discordgo.MessageEmbed
-	GetLeft() *discordgo.MessageEmbed
-	GetPaused() *discordgo.MessageEmbed
-	GetResumed() *discordgo.MessageEmbed
-	GetStopped() *discordgo.MessageEmbed
-	GetEmptyQueue() *discordgo.MessageEmbed
-	GetEndQueue() *discordgo.MessageEmbed
-	GetStillPlaying() *discordgo.MessageEmbed
-	GetStartPlaying() *discordgo.MessageEmbed
-	GetNext() *discordgo.MessageEmbed
-	// GetJumped(i int) string
-	// GetRemoved(i []string) string
+	Error(err string, isEdit ...bool) discordEntity.Message
+	Joined() discordEntity.Message
+	Left() discordEntity.Message
+	ReachedQueueLimit(isEdit ...bool) discordEntity.Message
+	AddedVideo(data []entity.Video, isEdit ...bool) discordEntity.Message
+	VideoSearchResults(data []entity.Video, play bool) discordEntity.Message
+	Queue(data []entity.Video, index int) discordEntity.Message
+	Stopped() discordEntity.Message
+	Player(data entity.Video, playing bool) discordEntity.Message
+	Playing() discordEntity.Message
+	Paused() discordEntity.Message
+	PausedButtons() discordEntity.Message
+	PlayingButtons() discordEntity.Message
+	Purged() discordEntity.Message
+	Next() discordEntity.Message
+	Previous() discordEntity.Message
+	Jumped(songNumber int) discordEntity.Message
+	Removed(songNumbers []int) discordEntity.Message
 }

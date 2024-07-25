@@ -28,7 +28,9 @@ type config struct {
 }
 
 type discordConfig struct {
-	Token string `envconfig:"TOKEN" required:"true"`
+	Token      string `envconfig:"TOKEN" required:"true"`
+	DeleteTime int    `envconfig:"DELETE_TIME"`
+	QueueLimit int    `envconfig:"QUEUE_LIMIT" validate:"gte=0" mod:"default=20"`
 }
 
 type dbConfig struct {
@@ -46,11 +48,11 @@ type cacheConfig struct {
 	Dialect  string        `envconfig:"DIALECT" validate:"required,oneof=nocache redis inmemory" mod:"default=inmemory,no_space,lcase"`
 	Address  string        `envconfig:"ADDRESS"`
 	Password string        `envconfig:"PASSWORD"`
-	Time     time.Duration `envconfig:"TIME" default:"24h" validate:"required,gt=0"`
+	Time     time.Duration `envconfig:"TIME" validate:"required,gt=0" mod:"default=24h"`
 }
 
 type youtubeConfig struct {
-	Key string `envconfig:"KEY" required:"true"`
+	Key string `envconfig:"KEY" validate:"required"`
 }
 
 type logConfig struct {
@@ -60,7 +62,7 @@ type logConfig struct {
 }
 
 type newrelicConfig struct {
-	Name       string `envconfig:"NAME" default:"naka-kai"`
+	Name       string `envconfig:"NAME" mod:"default=naka-kai"`
 	LicenseKey string `envconfig:"LICENSE_KEY"`
 }
 

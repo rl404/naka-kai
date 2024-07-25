@@ -34,7 +34,6 @@ func (c *client) JoinVoiceChannel(ctx context.Context, i *discordgo.Interaction)
 
 		c.players[i.GuildID].Lock()
 		c.players[i.GuildID].voice = vc
-		c.players[i.GuildID].channelID = i.ChannelID
 		c.players[i.GuildID].isInVoiceChannel = true
 		c.players[i.GuildID].Unlock()
 	}
@@ -50,7 +49,7 @@ func (c *client) JoinVoiceChannel(ctx context.Context, i *discordgo.Interaction)
 func (c *client) LeaveVoiceChannel(ctx context.Context, i *discordgo.Interaction) error {
 	// Not in voice channel.
 	if !c.players[i.GuildID].isInVoiceChannel {
-		return nil
+		return stack.Wrap(ctx, errors.ErrNotInVC)
 	}
 
 	// Leave voice channel.
@@ -58,8 +57,14 @@ func (c *client) LeaveVoiceChannel(ctx context.Context, i *discordgo.Interaction
 		return stack.Wrap(ctx, err)
 	}
 
+	if c.players[i.GuildID].messageID != "" {
+		c.session.ChannelMessageDelete(c.players[i.GuildID].channelID, c.players[i.GuildID].messageID)
+	}
+
 	c.players[i.GuildID].Lock()
 	c.players[i.GuildID].isInVoiceChannel = false
+	c.players[i.GuildID].channelID = ""
+	c.players[i.GuildID].messageID = ""
 	c.players[i.GuildID].Unlock()
 
 	return nil

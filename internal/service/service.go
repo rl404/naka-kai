@@ -22,17 +22,23 @@ type Service interface {
 
 	HandleCommandPlay(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandQueue(ctx context.Context, i *discordgo.Interaction) error
+	HandleCommandRemove(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandPurge(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandJoin(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandLeave(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandPause(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandResume(ctx context.Context, i *discordgo.Interaction) error
+	HandleCommandPrevious(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandNext(ctx context.Context, i *discordgo.Interaction) error
+	HandleCommandJump(ctx context.Context, i *discordgo.Interaction) error
 	HandleCommandStop(ctx context.Context, i *discordgo.Interaction) error
 
-	HandleComponentAddSong(ctx context.Context, i *discordgo.Interaction, customIDs []string) error
+	HandleComponentAdd(ctx context.Context, i *discordgo.Interaction, customIDs []string) error
+	HandleComponentPause(ctx context.Context, i *discordgo.Interaction) error
+	HandleComponentResume(ctx context.Context, i *discordgo.Interaction) error
+	HandleComponentPrevious(ctx context.Context, i *discordgo.Interaction) error
 	HandleComponentNext(ctx context.Context, i *discordgo.Interaction) error
-	HandleComponentPurge(ctx context.Context, i *discordgo.Interaction) error
+	HandleComponentStop(ctx context.Context, i *discordgo.Interaction) error
 }
 
 type service struct {

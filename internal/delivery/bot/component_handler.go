@@ -10,9 +10,12 @@ import (
 )
 
 const (
-	compAdd   = "add"
-	compNext  = "next"
-	compPurge = "purge"
+	compAdd    = "add"
+	compPause  = "pause"
+	compResume = "resume"
+	compStop   = "stop"
+	compPrev   = "previous"
+	compNext   = "next"
 )
 
 func (b *Bot) componentHandler(nrApp *newrelic.Application) func(*discordgo.Session, *discordgo.InteractionCreate) {
@@ -35,11 +38,17 @@ func (b *Bot) componentHandler(nrApp *newrelic.Application) func(*discordgo.Sess
 
 		switch customIDs[0] {
 		case compAdd:
-			stack.Wrap(ctx, b.service.HandleComponentAddSong(ctx, i.Interaction, customIDs[1:]))
+			stack.Wrap(ctx, b.service.HandleComponentAdd(ctx, i.Interaction, customIDs[1:]))
+		case compPause:
+			stack.Wrap(ctx, b.service.HandleComponentPause(ctx, i.Interaction))
+		case compResume:
+			stack.Wrap(ctx, b.service.HandleComponentResume(ctx, i.Interaction))
+		case compPrev:
+			stack.Wrap(ctx, b.service.HandleComponentPrevious(ctx, i.Interaction))
 		case compNext:
 			stack.Wrap(ctx, b.service.HandleComponentNext(ctx, i.Interaction))
-		case compPurge:
-			stack.Wrap(ctx, b.service.HandleComponentPurge(ctx, i.Interaction))
+		case compStop:
+			stack.Wrap(ctx, b.service.HandleComponentStop(ctx, i.Interaction))
 		}
 	}
 }

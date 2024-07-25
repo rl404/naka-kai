@@ -13,7 +13,6 @@ import (
 	discordRepository "github.com/rl404/naka-kai/internal/domain/discord/repository"
 	discordClient "github.com/rl404/naka-kai/internal/domain/discord/repository/client"
 	queueRepository "github.com/rl404/naka-kai/internal/domain/queue/repository"
-	queueCache "github.com/rl404/naka-kai/internal/domain/queue/repository/cache"
 	queueSQL "github.com/rl404/naka-kai/internal/domain/queue/repository/sql"
 	templateRepository "github.com/rl404/naka-kai/internal/domain/template/repository"
 	templateClient "github.com/rl404/naka-kai/internal/domain/template/repository/client"
@@ -66,7 +65,7 @@ func bot() error {
 
 	// Init discord.
 	var discord discordRepository.Repository
-	discord, err = discordClient.New(cfg.Discord.Token)
+	discord, err = discordClient.New(cfg.Discord.Token, cfg.Discord.DeleteTime)
 	if err != nil {
 		return err
 	}
@@ -81,9 +80,7 @@ func bot() error {
 	utils.Info("youtube initialized")
 
 	// Init queue.
-	var queue queueRepository.Repository
-	queue = queueSQL.New(db)
-	queue = queueCache.New(c, queue)
+	var queue queueRepository.Repository = queueSQL.New(db, cfg.Discord.QueueLimit)
 	utils.Info("queue initialized")
 
 	// Init template.

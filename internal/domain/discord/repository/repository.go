@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bwmarrin/discordgo"
+	"github.com/rl404/naka-kai/internal/domain/discord/entity"
 )
 
 // Repository contains functions for discord domain.
@@ -14,23 +15,25 @@ type Repository interface {
 	AddReadyHandler(fn func(*discordgo.Session, *discordgo.Ready))
 	AddInteractionHandler(fn func(*discordgo.Session, *discordgo.InteractionCreate))
 
-	SendInteractionEmbedMessage(ctx context.Context, i *discordgo.Interaction, msgs []*discordgo.MessageEmbed, components []discordgo.MessageComponent, isEdit ...bool) error
-	SendInteractionErrorMessage(ctx context.Context, i *discordgo.Interaction, msg string, isEdit ...bool) error
-	SendEmbedMessage(ctx context.Context, channelID string, msg *discordgo.MessageEmbed) error
-	SendErrorMessage(ctx context.Context, channelID string, msg string) error
+	SendInteractionMessage(ctx context.Context, i *discordgo.Interaction, data entity.Message) error
+	SendMessage(ctx context.Context, channelID string, data entity.Message) (string, string, error)
+	EditMessage(ctx context.Context, channelID, messageID string, data entity.Message) error
+
+	JoinVoiceChannel(ctx context.Context, i *discordgo.Interaction) error
+	LeaveVoiceChannel(ctx context.Context, i *discordgo.Interaction) error
 
 	InitPlayer(guildID string)
 	Stream(ctx context.Context, guildID, path string) error
 
-	SetIsPlayerExist(guildID string, value bool)
-	GetIsPlayerExist(guildID string) bool
-	GetIsStopped(guildID string) bool
+	SetChannelIDMessageID(guildID string, channelID, messageID string)
+	GetChannelIDMessageID(guildID string) (string, string)
+	GetMessageID(guildID string) string
+	SetAutoNext(guildID string, value bool)
+	GetAutoNext(guildID string) bool
+	SetQueueIndex(guildID string, value int)
+	GetQueueIndex(guildID string) int
 
 	Pause(guildID string)
 	Resume(guildID string)
-	Next(guildID string)
 	Stop(guildID string)
-
-	JoinVoiceChannel(ctx context.Context, i *discordgo.Interaction) error
-	LeaveVoiceChannel(ctx context.Context, i *discordgo.Interaction) error
 }

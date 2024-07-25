@@ -13,14 +13,15 @@ import (
 type player struct {
 	sync.Mutex
 
-	voice            *discordgo.VoiceConnection
-	channelID        string
-	isInVoiceChannel bool
+	voice      *discordgo.VoiceConnection
+	channelID  string
+	messageID  string
+	queueIndex int
 
-	isPlayerExist bool
-	isPlaying     bool
-	isPaused      bool
-	isStopped     bool
+	isInVoiceChannel bool
+	isPlaying        bool
+	isPaused         bool
+	autoNext         bool
 
 	encodeSession *dca.EncodeSession
 	streamSession *dca.StreamingSession
@@ -35,18 +36,53 @@ func (c *client) InitPlayer(guildID string) {
 	}
 }
 
-// GetIsPlayerExist to get isPlayerExist.
-func (c *client) GetIsPlayerExist(guildID string) bool {
+// GetChannelIDMessageID to get channelID & messageID.
+func (c *client) GetChannelIDMessageID(guildID string) (string, string) {
 	c.Lock()
 	defer c.Unlock()
-	return c.players[guildID].isPlayerExist
+	return c.players[guildID].channelID, c.players[guildID].messageID
 }
 
-// SetIsPlayerExist to set isPlayerExist.
-func (c *client) SetIsPlayerExist(guildID string, value bool) {
+// SetChannelIDMessageID to set messageID.
+func (c *client) SetChannelIDMessageID(guildID string, channelID, messageID string) {
 	c.Lock()
 	defer c.Unlock()
-	c.players[guildID].isPlayerExist = value
+	c.players[guildID].channelID, c.players[guildID].messageID = channelID, messageID
+}
+
+// GetMessageID to get messageID.
+func (c *client) GetMessageID(guildID string) string {
+	c.Lock()
+	defer c.Unlock()
+	return c.players[guildID].messageID
+}
+
+// GetQueueIndex to get queueIndex.
+func (c *client) GetQueueIndex(guildID string) int {
+	c.Lock()
+	defer c.Unlock()
+	return c.players[guildID].queueIndex
+}
+
+// SetQueueIndex to set queueIndex.
+func (c *client) SetQueueIndex(guildID string, value int) {
+	c.Lock()
+	defer c.Unlock()
+	c.players[guildID].queueIndex = value
+}
+
+// GetAutoNext to get autoNext.
+func (c *client) GetAutoNext(guildID string) bool {
+	c.Lock()
+	defer c.Unlock()
+	return c.players[guildID].autoNext
+}
+
+// SetAutoNext to set autoNext.
+func (c *client) SetAutoNext(guildID string, value bool) {
+	c.Lock()
+	defer c.Unlock()
+	c.players[guildID].autoNext = value
 }
 
 // Pause to pause song.
@@ -55,10 +91,9 @@ func (c *client) Pause(guildID string) {
 	defer c.Unlock()
 
 	if !c.players[guildID].isInVoiceChannel ||
-		!c.players[guildID].isPlayerExist ||
+		c.players[guildID].messageID == "" ||
 		!c.players[guildID].isPlaying ||
-		c.players[guildID].isPaused ||
-		c.players[guildID].isStopped {
+		c.players[guildID].isPaused {
 		return
 	}
 
@@ -72,31 +107,14 @@ func (c *client) Resume(guildID string) {
 	defer c.Unlock()
 
 	if !c.players[guildID].isInVoiceChannel ||
-		!c.players[guildID].isPlayerExist ||
+		c.players[guildID].messageID == "" ||
 		!c.players[guildID].isPlaying ||
-		!c.players[guildID].isPaused ||
-		c.players[guildID].isStopped {
+		!c.players[guildID].isPaused {
 		return
 	}
 
 	c.players[guildID].isPaused = false
 	c.players[guildID].streamSession.SetPaused(false)
-}
-
-// Next to go next song.
-func (c *client) Next(guildID string) {
-	c.Lock()
-	defer c.Unlock()
-
-	if !c.players[guildID].isInVoiceChannel ||
-		!c.players[guildID].isPlayerExist ||
-		!c.players[guildID].isPlaying {
-		return
-	}
-
-	if c.players[guildID].encodeSession != nil {
-		c.players[guildID].encodeSession.Cleanup()
-	}
 }
 
 // Stop to stop song.
@@ -105,22 +123,12 @@ func (c *client) Stop(guildID string) {
 	defer c.Unlock()
 
 	if !c.players[guildID].isInVoiceChannel ||
-		!c.players[guildID].isPlayerExist ||
+		c.players[guildID].messageID == "" ||
 		!c.players[guildID].isPlaying {
 		return
 	}
 
-	c.players[guildID].isStopped = true
-	if c.players[guildID].encodeSession != nil {
-		c.players[guildID].encodeSession.Cleanup()
-	}
-}
-
-// GetIsStopped to get isStopped.
-func (c *client) GetIsStopped(guildID string) bool {
-	c.Lock()
-	defer c.Unlock()
-	return c.players[guildID].isStopped
+	c.cleanUp(guildID)
 }
 
 func (c *client) setIsPlaying(guildID string, value bool) {
@@ -136,14 +144,12 @@ func (c *client) Stream(ctx context.Context, guildID, path string) (err error) {
 
 	options := dca.StdEncodeOptions
 	options.RawOutput = true
-	// options.Bitrate = 96
-	// options.Application = "lowdelay"
 
 	c.players[guildID].encodeSession, err = dca.EncodeFile(path, options)
 	if err != nil {
 		return stack.Wrap(ctx, err)
 	}
-	defer c.players[guildID].encodeSession.Cleanup()
+	defer c.cleanUp(guildID)
 
 	done := make(chan error)
 
@@ -154,4 +160,10 @@ func (c *client) Stream(ctx context.Context, guildID, path string) (err error) {
 	}
 
 	return nil
+}
+
+func (c *client) cleanUp(guildID string) {
+	if c.players[guildID].encodeSession != nil {
+		c.players[guildID].encodeSession.Cleanup()
+	}
 }

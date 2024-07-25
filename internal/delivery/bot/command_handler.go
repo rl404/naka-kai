@@ -11,12 +11,15 @@ import (
 const (
 	cmdPlay   = "play"
 	cmdQueue  = "queue"
+	cmdRemove = "remove"
 	cmdPurge  = "purge"
 	cmdJoin   = "join"
 	cmdLeave  = "leave"
 	cmdPause  = "pause"
 	cmdResume = "resume"
+	cmdPrev   = "previous"
 	cmdNext   = "next"
+	cmdJump   = "jump"
 	cmdStop   = "stop"
 )
 
@@ -27,7 +30,7 @@ func (b *Bot) registerCommand(s *discordgo.Session) error {
 			Description: "Play queued songs",
 			Options: []*discordgo.ApplicationCommandOption{
 				{
-					Name:        "args",
+					Name:        "song_title_or_youtube_urls",
 					Description: "Song title or YouTube URLs",
 					Type:        discordgo.ApplicationCommandOptionString,
 				},
@@ -38,9 +41,21 @@ func (b *Bot) registerCommand(s *discordgo.Session) error {
 			Description: "Add songs to queue",
 			Options: []*discordgo.ApplicationCommandOption{
 				{
-					Name:        "args",
+					Name:        "song_title_or_youtube_urls",
 					Description: "Song title or YouTube URLs",
 					Type:        discordgo.ApplicationCommandOptionString,
+				},
+			},
+		},
+		{
+			Name:        cmdRemove,
+			Description: "Remove songs to queue",
+			Options: []*discordgo.ApplicationCommandOption{
+				{
+					Name:        "song_numbers",
+					Description: "Queued song numbers",
+					Type:        discordgo.ApplicationCommandOptionString,
+					Required:    true,
 				},
 			},
 		},
@@ -65,8 +80,24 @@ func (b *Bot) registerCommand(s *discordgo.Session) error {
 			Description: "Resume the song",
 		},
 		{
+			Name:        cmdPrev,
+			Description: "Go to previous song",
+		},
+		{
 			Name:        cmdNext,
 			Description: "Go to next song",
+		},
+		{
+			Name:        cmdJump,
+			Description: "Jump to desired song number",
+			Options: []*discordgo.ApplicationCommandOption{
+				{
+					Name:        "song_number",
+					Description: "Queued song number",
+					Type:        discordgo.ApplicationCommandOptionString,
+					Required:    true,
+				},
+			},
 		},
 		{
 			Name:        cmdStop,
@@ -104,6 +135,8 @@ func (b *Bot) commandHandler(nrApp *newrelic.Application) func(*discordgo.Sessio
 			stack.Wrap(ctx, b.service.HandleCommandPlay(ctx, i.Interaction))
 		case cmdQueue:
 			stack.Wrap(ctx, b.service.HandleCommandQueue(ctx, i.Interaction))
+		case cmdRemove:
+			stack.Wrap(ctx, b.service.HandleCommandRemove(ctx, i.Interaction))
 		case cmdPurge:
 			stack.Wrap(ctx, b.service.HandleCommandPurge(ctx, i.Interaction))
 		case cmdJoin:
@@ -114,8 +147,12 @@ func (b *Bot) commandHandler(nrApp *newrelic.Application) func(*discordgo.Sessio
 			stack.Wrap(ctx, b.service.HandleCommandPause(ctx, i.Interaction))
 		case cmdResume:
 			stack.Wrap(ctx, b.service.HandleCommandResume(ctx, i.Interaction))
+		case cmdPrev:
+			stack.Wrap(ctx, b.service.HandleCommandPrevious(ctx, i.Interaction))
 		case cmdNext:
 			stack.Wrap(ctx, b.service.HandleCommandNext(ctx, i.Interaction))
+		case cmdJump:
+			stack.Wrap(ctx, b.service.HandleCommandJump(ctx, i.Interaction))
 		case cmdStop:
 			stack.Wrap(ctx, b.service.HandleCommandStop(ctx, i.Interaction))
 		}
