@@ -31,7 +31,7 @@ jobs:
           gke_node_disk_size_gb         = "${{ secrets.GKE_NODE_DISK_SIZE_GB }}"
           gcr_image_name                = "${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/naka-kai:${{ needs.publish_image.outputs.img_tag }}"
           gke_deployment_name           = "${{ secrets.GKE_DEPLOYMENT_NAME }}"
-          naka_kai_discord_token        = "${{ secrets.NAKA_DISCORD_TOKEN }}"
+          naka_kai_discord_token        = "${{ secrets.NAKA_KAI_DISCORD_TOKEN }}"
           naka_kai_discord_delete_time  = "${{ secrets.NAKA_KAI_DISCORD_DELETE_TIME }}"
           naka_kai_discord_queue_limit  = "${{ secrets.NAKA_KAI_DISCORD_QUEUE_LIMIT }}"
           naka_kai_db_dialect           = "${{ secrets.NAKA_KAI_DB_DIALECT }}"
@@ -39,10 +39,10 @@ jobs:
           naka_kai_db_name              = "${{ secrets.NAKA_KAI_DB_NAME }}"
           naka_kai_db_user              = "${{ secrets.NAKA_KAI_DB_USER }}"
           naka_kai_db_password          = "${{ secrets.NAKA_KAI_DB_PASSWORD }}"
-          naka_kai_youtube_key          = "${{ secrets.NAKA_YOUTUBE_KEY }}"
-          naka_kai_log_level            = "${{ secrets.NAKA_LOG_LEVEL }}"
-          naka_kai_log_json             = "${{ secrets.NAKA_LOG_JSON }}"
-          naka_kai_newrelic_license_key = "${{ secrets.NAKA_NEWRELIC_LICENSE_KEY }}"
+          naka_kai_youtube_key          = "${{ secrets.NAKA_KAI_YOUTUBE_KEY }}"
+          naka_kai_log_level            = "${{ secrets.NAKA_KAI_LOG_LEVEL }}"
+          naka_kai_log_json             = "${{ secrets.NAKA_KAI_LOG_JSON }}"
+          naka_kai_newrelic_license_key = "${{ secrets.NAKA_KAI_NEWRELIC_LICENSE_KEY }}"
           EOF
       - name: Init Terraform
         run: terraform init -backend-config "bucket=${{ secrets.GCS_BUCKET }}"
