@@ -1,4 +1,4 @@
-# cloud.google.com/go/auth v0.6.1
+# cloud.google.com/go/auth v0.7.2
 ## explicit; go 1.20
 cloud.google.com/go/auth
 cloud.google.com/go/auth/credentials
@@ -13,11 +13,11 @@ cloud.google.com/go/auth/internal/credsfile
 cloud.google.com/go/auth/internal/jwt
 cloud.google.com/go/auth/internal/transport
 cloud.google.com/go/auth/internal/transport/cert
-# cloud.google.com/go/auth/oauth2adapt v0.2.2
-## explicit; go 1.19
+# cloud.google.com/go/auth/oauth2adapt v0.2.3
+## explicit; go 1.20
 cloud.google.com/go/auth/oauth2adapt
-# cloud.google.com/go/compute/metadata v0.3.0
-## explicit; go 1.19
+# cloud.google.com/go/compute/metadata v0.5.0
+## explicit; go 1.20
 cloud.google.com/go/compute/metadata
 # github.com/allegro/bigcache/v3 v3.1.0
 ## explicit; go 1.16
@@ -56,7 +56,7 @@ github.com/felixge/httpsnoop
 ## explicit; go 1.14
 github.com/go-chi/chi/v5
 github.com/go-chi/chi/v5/middleware
-# github.com/go-logr/logr v1.4.1
+# github.com/go-logr/logr v1.4.2
 ## explicit; go 1.18
 github.com/go-logr/logr
 github.com/go-logr/logr/funcr
@@ -207,7 +207,6 @@ github.com/rl404/fairy/log/chain
 github.com/rl404/fairy/log/newrelic
 github.com/rl404/fairy/log/nop
 github.com/rl404/fairy/log/zerolog
-github.com/rl404/fairy/monitoring/newrelic/cache
 github.com/rl404/fairy/monitoring/newrelic/database
 github.com/rl404/fairy/pubsub
 # github.com/rs/zerolog v1.31.0
@@ -275,7 +274,7 @@ golang.org/x/crypto/internal/poly1305
 golang.org/x/crypto/nacl/secretbox
 golang.org/x/crypto/pbkdf2
 golang.org/x/crypto/salsa20/salsa
-# golang.org/x/net v0.26.0
+# golang.org/x/net v0.27.0
 ## explicit; go 1.18
 golang.org/x/net/http/httpguts
 golang.org/x/net/http2
@@ -303,6 +302,7 @@ golang.org/x/sync/semaphore
 golang.org/x/sys/cpu
 golang.org/x/sys/unix
 golang.org/x/sys/windows
+golang.org/x/sys/windows/registry
 # golang.org/x/text v0.16.0
 ## explicit; go 1.18
 golang.org/x/text/cases
@@ -321,7 +321,7 @@ golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 golang.org/x/text/unicode/rangetable
 golang.org/x/text/width
-# google.golang.org/api v0.187.0
+# google.golang.org/api v0.189.0
 ## explicit; go 1.20
 google.golang.org/api/googleapi
 google.golang.org/api/googleapi/transport
@@ -337,7 +337,7 @@ google.golang.org/api/transport/http/internal/propagation
 google.golang.org/api/youtube/v3
 # google.golang.org/genproto/googleapis/api v0.0.0-20240624140628-dc46fd24d27d
 ## explicit; go 1.20
-# google.golang.org/genproto/googleapis/rpc v0.0.0-20240624140628-dc46fd24d27d
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20240722135656-d784300faade
 ## explicit; go 1.20
 google.golang.org/genproto/googleapis/rpc/code
 google.golang.org/genproto/googleapis/rpc/errdetails
@@ -433,13 +433,13 @@ google.golang.org/protobuf/types/gofeaturespb
 google.golang.org/protobuf/types/known/anypb
 google.golang.org/protobuf/types/known/durationpb
 google.golang.org/protobuf/types/known/timestamppb
-# gorm.io/driver/mysql v1.5.2
+# gorm.io/driver/mysql v1.5.7
 ## explicit; go 1.14
 gorm.io/driver/mysql
 # gorm.io/driver/postgres v1.5.9
 ## explicit; go 1.19
 gorm.io/driver/postgres
-# gorm.io/gorm v1.25.10
+# gorm.io/gorm v1.25.11
 ## explicit; go 1.18
 gorm.io/gorm
 gorm.io/gorm/callbacks
