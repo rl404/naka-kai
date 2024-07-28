@@ -10,7 +10,6 @@ import (
 	"github.com/rl404/fairy/monitoring/newrelic/database"
 	"github.com/rl404/naka-kai/internal/errors"
 	"github.com/rl404/naka-kai/internal/utils"
-	"github.com/rl404/naka-kai/pkg/cache"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -60,12 +59,6 @@ type newrelicConfig struct {
 
 const envPath = "../../.env"
 const envPrefix = "NAKA_KAI"
-
-var cacheType = map[string]cache.CacheType{
-	"nocache":  cache.NOP,
-	"redis":    cache.Redis,
-	"inmemory": cache.InMemory,
-}
 
 func getConfig() (*config, error) {
 	var cfg config
