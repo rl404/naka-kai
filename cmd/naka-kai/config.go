@@ -34,7 +34,7 @@ type discordConfig struct {
 type dbConfig struct {
 	Dialect         string        `envconfig:"DIALECT" validate:"required,oneof=mysql postgresql" mod:"default=mysql,no_space,lcase"`
 	Address         string        `envconfig:"ADDRESS" validate:"required" mod:"default=localhost:3306,no_space"`
-	Name            string        `envconfig:"NAME" validate:"required" mod:"default=akatsuki"`
+	Name            string        `envconfig:"NAME" validate:"required" mod:"default=naka-kai"`
 	User            string        `envconfig:"USER" validate:"required" mod:"default=root"`
 	Password        string        `envconfig:"PASSWORD"`
 	MaxConnOpen     int           `envconfig:"MAX_CONN_OPEN" validate:"required,gt=0" mod:"default=10"`
