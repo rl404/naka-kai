@@ -43,7 +43,7 @@ func (b *Bot) AddHandler(nrApp *newrelic.Application) {
 
 func (b *Bot) readyHandler() func(*discordgo.Session, *discordgo.Ready) {
 	return func(s *discordgo.Session, _ *discordgo.Ready) {
-		// b.registerCommand(s)
+		b.registerCommand(s)
 	}
 }
 

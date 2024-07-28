@@ -19,7 +19,7 @@ func (c *client) SendMessage(ctx context.Context, channelID string, data entity.
 		return "", "", stack.Wrap(ctx, err)
 	}
 
-	if data.AutoDelete {
+	if !data.DisableAutoDelete {
 		defer c.deleteMessage(msg.ChannelID, msg.ID)
 	}
 
@@ -37,7 +37,7 @@ func (c *client) EditMessage(ctx context.Context, channelID, messageID string, d
 		return stack.Wrap(ctx, err)
 	}
 
-	if data.AutoDelete {
+	if !data.DisableAutoDelete {
 		defer c.deleteMessage(channelID, messageID)
 	}
 

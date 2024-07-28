@@ -33,7 +33,6 @@ func (c *client) Error(err string, isEdit ...bool) discordEntity.Message {
 		}},
 		Components: []discordgo.MessageComponent{},
 		IsEdit:     edit,
-		AutoDelete: true,
 	}
 }
 
@@ -212,7 +211,6 @@ func (c *client) Stopped() discordEntity.Message {
 			Color: entity.ColorGreyLight,
 		}},
 		Components: []discordgo.MessageComponent{},
-		AutoDelete: true,
 	}
 }
 
@@ -258,7 +256,8 @@ func (c *client) Player(data entity.Video, playing bool) discordEntity.Message {
 				},
 			},
 		}},
-		Components: components,
+		Components:        components,
+		DisableAutoDelete: true,
 	}
 }
 

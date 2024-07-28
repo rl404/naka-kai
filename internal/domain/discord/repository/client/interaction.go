@@ -11,7 +11,9 @@ import (
 
 // SendInteractionMessage to send interaction message.
 func (c *client) SendInteractionMessage(ctx context.Context, i *discordgo.Interaction, data entity.Message) error {
-	defer c.deleteInteraction(i)
+	if !data.DisableAutoDelete {
+		defer c.deleteInteraction(i)
+	}
 
 	_type := discordgo.InteractionResponseChannelMessageWithSource
 	if data.IsEdit {

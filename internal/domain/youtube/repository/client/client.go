@@ -17,7 +17,7 @@ import (
 	"github.com/rl404/naka-kai/internal/utils"
 	"google.golang.org/api/googleapi/transport"
 	"google.golang.org/api/option"
-	"google.golang.org/api/youtube/v3"
+	youtube "google.golang.org/api/youtube/v3"
 )
 
 type client struct {

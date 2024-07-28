@@ -1,10 +1,9 @@
 version: "2.4"
 
 services:
-  naka-kai-bot:
-    container_name: naka-kai-bot
+  naka-kai-migration:
+    container_name: naka-kai-migration
     image: naka-kai:latest
-    command: ./naka-kai bot
+    command: ./naka-kai migrate
     network_mode: host
-    restart: always
     env_file: ./../.env
