@@ -1,4 +1,4 @@
-# cloud.google.com/go/auth v0.7.2
+# cloud.google.com/go/auth v0.7.3
 ## explicit; go 1.20
 cloud.google.com/go/auth
 cloud.google.com/go/auth/credentials
@@ -21,8 +21,6 @@ cloud.google.com/go/auth/oauth2adapt
 cloud.google.com/go/compute/metadata
 # github.com/allegro/bigcache/v3 v3.1.0
 ## explicit; go 1.16
-github.com/allegro/bigcache/v3
-github.com/allegro/bigcache/v3/queue
 # github.com/bitly/go-simplejson v0.5.1
 ## explicit; go 1.17
 github.com/bitly/go-simplejson
@@ -31,10 +29,8 @@ github.com/bitly/go-simplejson
 github.com/bwmarrin/discordgo
 # github.com/cespare/xxhash/v2 v2.2.0
 ## explicit; go 1.11
-github.com/cespare/xxhash/v2
 # github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f
 ## explicit
-github.com/dgryski/go-rendezvous
 # github.com/dlclark/regexp2 v1.11.0
 ## explicit; go 1.13
 github.com/dlclark/regexp2
@@ -79,8 +75,8 @@ github.com/golang/protobuf/proto
 # github.com/google/pprof v0.0.0-20240227163752-401108e1b7e7
 ## explicit; go 1.19
 github.com/google/pprof/profile
-# github.com/google/s2a-go v0.1.7
-## explicit; go 1.19
+# github.com/google/s2a-go v0.1.8
+## explicit; go 1.20
 github.com/google/s2a-go
 github.com/google/s2a-go/fallback
 github.com/google/s2a-go/internal/authinfo
@@ -109,7 +105,7 @@ github.com/google/uuid
 ## explicit; go 1.19
 github.com/googleapis/enterprise-certificate-proxy/client
 github.com/googleapis/enterprise-certificate-proxy/client/util
-# github.com/googleapis/gax-go/v2 v2.12.5
+# github.com/googleapis/gax-go/v2 v2.13.0
 ## explicit; go 1.20
 github.com/googleapis/gax-go/v2
 github.com/googleapis/gax-go/v2/apierror
@@ -187,20 +183,8 @@ github.com/newrelic/go-agent/v3/internal/utilization
 github.com/newrelic/go-agent/v3/newrelic
 # github.com/redis/go-redis/v9 v9.2.1
 ## explicit; go 1.18
-github.com/redis/go-redis/v9
-github.com/redis/go-redis/v9/internal
-github.com/redis/go-redis/v9/internal/hashtag
-github.com/redis/go-redis/v9/internal/hscan
-github.com/redis/go-redis/v9/internal/pool
-github.com/redis/go-redis/v9/internal/proto
-github.com/redis/go-redis/v9/internal/rand
-github.com/redis/go-redis/v9/internal/util
 # github.com/rl404/fairy v0.25.2
 ## explicit; go 1.21
-github.com/rl404/fairy/cache
-github.com/rl404/fairy/cache/inmemory
-github.com/rl404/fairy/cache/nop
-github.com/rl404/fairy/cache/redis
 github.com/rl404/fairy/errors/stack
 github.com/rl404/fairy/log
 github.com/rl404/fairy/log/chain
@@ -321,7 +305,7 @@ golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 golang.org/x/text/unicode/rangetable
 golang.org/x/text/width
-# google.golang.org/api v0.189.0
+# google.golang.org/api v0.190.0
 ## explicit; go 1.20
 google.golang.org/api/googleapi
 google.golang.org/api/googleapi/transport
@@ -335,9 +319,9 @@ google.golang.org/api/option/internaloption
 google.golang.org/api/transport/http
 google.golang.org/api/transport/http/internal/propagation
 google.golang.org/api/youtube/v3
-# google.golang.org/genproto/googleapis/api v0.0.0-20240624140628-dc46fd24d27d
+# google.golang.org/genproto/googleapis/api v0.0.0-20240711142825-46eb208f015d
 ## explicit; go 1.20
-# google.golang.org/genproto/googleapis/rpc v0.0.0-20240722135656-d784300faade
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20240730163845-b1a4ccb954bf
 ## explicit; go 1.20
 google.golang.org/genproto/googleapis/rpc/code
 google.golang.org/genproto/googleapis/rpc/errdetails
