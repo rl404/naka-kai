@@ -19,18 +19,12 @@ cloud.google.com/go/auth/oauth2adapt
 # cloud.google.com/go/compute/metadata v0.5.2
 ## explicit; go 1.21
 cloud.google.com/go/compute/metadata
-# github.com/allegro/bigcache/v3 v3.1.0
-## explicit; go 1.16
 # github.com/bitly/go-simplejson v0.5.1
 ## explicit; go 1.17
 github.com/bitly/go-simplejson
 # github.com/bwmarrin/discordgo v0.28.1
 ## explicit; go 1.13
 github.com/bwmarrin/discordgo
-# github.com/cespare/xxhash/v2 v2.3.0
-## explicit; go 1.11
-# github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f
-## explicit
 # github.com/dlclark/regexp2 v1.11.0
 ## explicit; go 1.13
 github.com/dlclark/regexp2
@@ -155,8 +149,6 @@ github.com/joho/godotenv
 # github.com/jonas747/dca v0.0.0-20210930103944-155f5e5f0cc7
 ## explicit
 github.com/jonas747/dca
-# github.com/jonas747/dca/v2 v2.0.0
-## explicit; go 1.17
 # github.com/jonas747/ogg v0.0.0-20161220051205-b4f6f4cf3757
 ## explicit
 github.com/jonas747/ogg
@@ -183,8 +175,6 @@ github.com/newrelic/go-agent/v3/internal/logger
 github.com/newrelic/go-agent/v3/internal/sysinfo
 github.com/newrelic/go-agent/v3/internal/utilization
 github.com/newrelic/go-agent/v3/newrelic
-# github.com/redis/go-redis/v9 v9.6.1
-## explicit; go 1.18
 # github.com/rl404/fairy v0.26.0
 ## explicit; go 1.21
 github.com/rl404/fairy/errors/stack
@@ -325,8 +315,6 @@ google.golang.org/api/option/internaloption
 google.golang.org/api/transport/http
 google.golang.org/api/transport/http/internal/propagation
 google.golang.org/api/youtube/v3
-# google.golang.org/genproto/googleapis/api v0.0.0-20240814211410-ddb44dafa142
-## explicit; go 1.21
 # google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1
 ## explicit; go 1.21
 google.golang.org/genproto/googleapis/rpc/code
