@@ -12,7 +12,7 @@ require (
 	github.com/newrelic/go-agent/v3 v3.35.0
 	github.com/rl404/fairy v0.26.0
 	github.com/spf13/cobra v1.8.1
-	google.golang.org/api v0.200.0
+	google.golang.org/api v0.201.0
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.12
