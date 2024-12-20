@@ -11,7 +11,7 @@ require (
 	github.com/newrelic/go-agent/v3 v3.35.1
 	github.com/rl404/fairy v0.26.0
 	github.com/spf13/cobra v1.8.1
-	google.golang.org/api v0.213.0
+	google.golang.org/api v0.214.0
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12
@@ -53,7 +53,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.29.0 // indirect
 	go.opentelemetry.io/otel/trace v1.29.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
