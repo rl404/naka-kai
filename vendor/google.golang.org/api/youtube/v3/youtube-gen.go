@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC.
+// Copyright 2025 Google LLC.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -8531,7 +8531,7 @@ func (s VideoSuggestions) MarshalJSON() ([]byte, error) {
 	return gensupport.MarshalJSON(NoMethod(s), s.ForceSendFields, s.NullFields)
 }
 
-// VideoSuggestionsTagSuggestion: A single tag suggestion with it's relevance
+// VideoSuggestionsTagSuggestion: A single tag suggestion with its relevance
 // information.
 type VideoSuggestionsTagSuggestion struct {
 	// CategoryRestricts: A set of video categories for which the tag is relevant.
