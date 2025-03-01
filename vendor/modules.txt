@@ -1,5 +1,5 @@
-# cloud.google.com/go/auth v0.14.1
-## explicit; go 1.22.7
+# cloud.google.com/go/auth v0.15.0
+## explicit; go 1.23.0
 cloud.google.com/go/auth
 cloud.google.com/go/auth/credentials
 cloud.google.com/go/auth/credentials/internal/externalaccount
@@ -160,8 +160,8 @@ github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.19
 ## explicit; go 1.15
 github.com/mattn/go-isatty
-# github.com/newrelic/go-agent/v3 v3.36.0
-## explicit; go 1.21
+# github.com/newrelic/go-agent/v3 v3.37.0
+## explicit; go 1.22
 github.com/newrelic/go-agent/v3/internal
 github.com/newrelic/go-agent/v3/internal/cat
 github.com/newrelic/go-agent/v3/internal/com_newrelic_trace_v1
@@ -196,7 +196,7 @@ github.com/spf13/pflag
 ## explicit; go 1.22.0
 go.opentelemetry.io/auto/sdk
 go.opentelemetry.io/auto/sdk/internal/telemetry
-# go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.58.0
+# go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.59.0
 ## explicit; go 1.22.0
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp/internal/request
@@ -285,7 +285,7 @@ golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 golang.org/x/text/unicode/rangetable
 golang.org/x/text/width
-# google.golang.org/api v0.222.0
+# google.golang.org/api v0.223.0
 ## explicit; go 1.23.0
 google.golang.org/api/googleapi
 google.golang.org/api/googleapi/transport
@@ -300,8 +300,8 @@ google.golang.org/api/transport/http
 google.golang.org/api/youtube/v3
 # google.golang.org/genproto/googleapis/api v0.0.0-20241209162323-e6fa225c2576
 ## explicit; go 1.21
-# google.golang.org/genproto/googleapis/rpc v0.0.0-20250212204824-5a70512c5d8b
-## explicit; go 1.22
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20250219182151-9fdb1cabc7b2
+## explicit; go 1.23.0
 google.golang.org/genproto/googleapis/rpc/code
 google.golang.org/genproto/googleapis/rpc/errdetails
 google.golang.org/genproto/googleapis/rpc/status
