@@ -2,7 +2,7 @@ module github.com/rl404/naka-kai
 
 go 1.23.0
 
-toolchain go1.24.4
+toolchain go1.24.5
 
 require (
 	github.com/bwmarrin/discordgo v0.29.0
@@ -13,7 +13,7 @@ require (
 	github.com/newrelic/go-agent/v3 v3.39.0
 	github.com/rl404/fairy v0.26.0
 	github.com/spf13/cobra v1.9.1
-	google.golang.org/api v0.239.0
+	google.golang.org/api v0.241.0
 	gorm.io/driver/mysql v1.6.0
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.30.0
