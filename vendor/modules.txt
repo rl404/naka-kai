@@ -52,10 +52,9 @@ github.com/dop251/goja/unistring
 # github.com/felixge/httpsnoop v1.0.4
 ## explicit; go 1.13
 github.com/felixge/httpsnoop
-# github.com/go-chi/chi/v5 v5.2.4
-## explicit; go 1.22
+# github.com/go-chi/chi/v5 v5.3.1
+## explicit; go 1.23
 github.com/go-chi/chi/v5
-github.com/go-chi/chi/v5/middleware
 # github.com/go-logr/logr v1.4.3
 ## explicit; go 1.18
 github.com/go-logr/logr
@@ -163,7 +162,7 @@ github.com/kelseyhightower/envconfig
 # github.com/kkdai/youtube/v2 v2.10.6
 ## explicit; go 1.26
 github.com/kkdai/youtube/v2
-# github.com/mattn/go-colorable v0.1.14
+# github.com/mattn/go-colorable v0.1.15
 ## explicit; go 1.18
 github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.20
@@ -180,8 +179,8 @@ github.com/newrelic/go-agent/v3/internal/logger
 github.com/newrelic/go-agent/v3/internal/sysinfo
 github.com/newrelic/go-agent/v3/internal/utilization
 github.com/newrelic/go-agent/v3/newrelic
-# github.com/rl404/fairy v0.26.1
-## explicit; go 1.24.5
+# github.com/rl404/fairy v0.27.0
+## explicit; go 1.25.8
 github.com/rl404/fairy/errors/stack
 github.com/rl404/fairy/log
 github.com/rl404/fairy/log/chain
@@ -190,8 +189,8 @@ github.com/rl404/fairy/log/nop
 github.com/rl404/fairy/log/zerolog
 github.com/rl404/fairy/monitoring/newrelic/database
 github.com/rl404/fairy/pubsub
-# github.com/rs/zerolog v1.34.0
-## explicit; go 1.15
+# github.com/rs/zerolog v1.35.1
+## explicit; go 1.23
 github.com/rs/zerolog
 github.com/rs/zerolog/internal/cbor
 github.com/rs/zerolog/internal/json
