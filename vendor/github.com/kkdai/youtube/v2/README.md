@@ -59,10 +59,27 @@ youtubedr download rFejpH_tAHM
 youtubedr download https://www.youtube.com/watch?v=rFejpH_tAHM
 ```
 
+Video IDs can start with a dash (e.g. `-9BsEvS2uHU`), which would otherwise be parsed as a flag.
+Put `--` before the ID, after any flags, or pass the full URL instead:
+
+```shell
+youtubedr download -q hd720 -- -9BsEvS2uHU
+youtubedr download "https://www.youtube.com/watch?v=-9BsEvS2uHU"
+```
 
 ### Use this package in your golang program
 
 Please check out the [example_test.go](example_test.go) for example code.
+
+`PlayerParams` optionally sets the opaque `params` value in Innertube Player API requests:
+
+```go
+client := youtube.Client{
+    PlayerParams: "2AMB",
+}
+```
+
+An empty value preserves existing behavior. `"2AMB"` has improved media access in some Android-client scenarios; its effect can vary by client and video.
 
 
 ## Example:
